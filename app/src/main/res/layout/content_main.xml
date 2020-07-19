@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/containerMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
@@ -14,11 +15,9 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center">
-        <ImageView
-            android:layout_width="250dp"
-            android:layout_height="150dp"
-            android:src="@mipmap/ic_launcher_foreground">
-        </ImageView>
+
+        <include layout="@layout/cabecera"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -54,7 +53,7 @@
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:hint="Ingrese su contraseña"
-                android:inputType="text">
+                android:inputType="textPassword">
             </com.google.android.material.textfield.TextInputEditText>
         </com.google.android.material.textfield.TextInputLayout>
         <androidx.appcompat.widget.AppCompatButton
@@ -66,9 +65,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Olvidé mi contraseña"
-            android:textColor="@android:color/black"
-            android:clickable="true">
+            android:text="@string/olvidoContra"
+            android:textColor="@color/holo_blue_darkest"
+            android:clickable="true"
+            android:id="@+id/tvRecuperaContra">
         </TextView>
         <ProgressBar
             android:id="@+id/cargaImagen"
