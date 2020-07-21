@@ -91,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
                                     String cuenta = respuesta.substring(7,respuesta.length());
                                     Intent inicio = new Intent(MainActivity.this, Inicio.class);
                                     inicio.putExtra("cuenta", cuenta);
+                                    inicio.putExtra("correo", eUsuario.getText().toString());
                                     startActivityForResult(inicio, 1);
                                     visualizarCarga(false);
                                 }
