@@ -12,8 +12,23 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
 
 public class Inicio extends AppCompatActivity {
+    private String cuenta;
+    private TextView txtSaldo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,11 +38,40 @@ public class Inicio extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+
+        cuenta = getIntent().getStringExtra("cuenta");
+
+        txtSaldo = findViewById(R.id.txtSaldo);
+
+        //Se establece el escenario para realizar las peticiones web
+        OkHttpClient client = new OkHttpClient.Builder()
+                .connectTimeout(60, TimeUnit.SECONDS)
+                .readTimeout(60,TimeUnit.SECONDS).build();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://10.0.2.2:8080/Banco_Servidor/srv/cliente/")
+                .client(client)
+                .addConverterFactory(SimpleXmlConverterFactory.create())
+                .build();
+        APIService apiService = retrofit.create(APIService.class);
+
+        Call<ResponseBody> saldo = apiService.getSaldo(cuenta);
+
+        saldo.enqueue(new Callback<ResponseBody>() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                try {
+                    String respuesta = response.body().string();
+                    txtSaldo.setText(respuesta);
+                } catch (Exception e) {
+                    Snackbar.make(findViewById(R.id.containerMainInicio), "Se ha producido un error. ("+e.getMessage()+")",
+                            Snackbar.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                System.out.println("Se ah producido el siguiente error: "+t.getMessage());
             }
         });
     }

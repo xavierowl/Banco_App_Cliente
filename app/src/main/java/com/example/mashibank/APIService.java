@@ -14,4 +14,7 @@ public interface APIService {
 
     @GET("cambiarClave")
     Call<ResponseBody> cambiarClave(@Query("correo") String correo);
+
+    @GET("getSaldo")
+    Call<ResponseBody> getSaldo(@Query("cuenta") String cuenta);
 }

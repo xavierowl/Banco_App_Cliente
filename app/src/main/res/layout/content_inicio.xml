@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/containerMainInicio"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
@@ -9,58 +10,38 @@
     tools:showIn="@layout/activity_inicio">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
-        <LinearLayout
-            android:id="@+id/lBienvenida"
-            android:layout_width="match_parent"
+
+        <include layout="@layout/cabecera"/>
+
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center">
-            <ImageView
-                android:layout_width="250dp"
-                android:layout_height="150dp"
-                android:src="@mipmap/ic_launcher_foreground">
-            </ImageView>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Posición consolidada"
-                android:textAppearance="@android:style/TextAppearance.Large"/>
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/lContenido"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Cuentas"
-                    android:textAppearance="@android:style/TextAppearance.Large"/>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Pagos pendientes"
-                        android:paddingRight="20dp"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Large">
-                    </TextView>
-                    <TextView
-                        android:id="@+id/saldoPendiente"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Pagos pendientes"
-                        android:paddingRight="20dp"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Large">
-                    </TextView>
-                </LinearLayout>
-            </LinearLayout>
-        </LinearLayout>
+            android:text="Posición consolidada"
+            android:textAppearance="@android:style/TextAppearance.Large"
+            android:layout_gravity="center"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cuenta"
+            android:textAppearance="@android:style/TextAppearance.Large"
+            android:layout_marginLeft="5dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$N/A"
+            android:id="@+id/txtSaldo"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:layout_marginLeft="20dp"
+            android:textColor="@android:color/holo_blue_dark">
+        </TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Saldo disponible"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:layout_marginLeft="20dp">
+        </TextView>
     </LinearLayout>
 </RelativeLayout>
