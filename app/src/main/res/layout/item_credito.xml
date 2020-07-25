@@ -6,39 +6,64 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:srcCompat="http://schemas.android.com/tools"
     app:cardUseCompatPadding="true">
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <LinearLayout
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="4dp">
+        <RelativeLayout
+            android:id="@+id/creditoDescripcion"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center">
+            android:layout_height="wrap_content">
             <TextView
-                android:id="@+id/numeroCredito"
+                android:id="@+id/tvTipoCredito"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Solicitud #"
-                android:layout_toLeftOf="@+id/fechaFinCredito"
+                android:text="Ejemplo1"
                 android:paddingRight="20dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large">
-            </TextView>
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
             <TextView
-                android:id="@+id/fechaInicioCredito"
+                android:id="@+id/numeroCreditos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="01/01/2001"
-                android:layout_toLeftOf="@+id/fechaFinCredito"
-                android:paddingRight="20dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large">
-            </TextView>
+                android:text="10/20"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:layout_toRightOf="@id/tvTipoCredito"/>
+
             <TextView
-                android:id="@+id/fechaFinCredito"
+                android:id="@+id/tvFechaVencimiento"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="01/01/2000"
-                android:paddingRight="20dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large">
-            </TextView>
-        </LinearLayout>
-    </RelativeLayout>
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:layout_alignParentRight="true"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/creditoInformacion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tvProximo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Próximo pago: "/>
+            <TextView
+                android:id="@+id/tvProximoFecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="01/09/2020"
+                android:layout_toRightOf="@id/tvProximo"/>
+            <TextView
+                android:id="@+id/tvPagado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$100.00/$200.00"
+                android:textColor="@color/holo_blue_darkest"
+                android:layout_alignParentRight="true"/>
+        </RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/noDebe"/>
+    </LinearLayout>
 </androidx.cardview.widget.CardView>

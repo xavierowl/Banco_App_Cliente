@@ -3,11 +3,15 @@ package com.example.mashibank;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.mashibank.adapters.AdapterCredito;
+import com.example.mashibank.models.Credito;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,11 +28,15 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
 
 public class Inicio extends AppCompatActivity {
     private String cuenta;
     private TextView txtSaldo;
+    private RecyclerView rvCreditos;
+    private APIService apiServiceSaldo;
+    private APIService apiService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,11 +45,11 @@ public class Inicio extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-
+        rvCreditos = findViewById(R.id.rVCreditos);
         cuenta = getIntent().getStringExtra("cuenta");
-
         txtSaldo = findViewById(R.id.txtSaldo);
+
+        rvCreditos.setLayoutManager(new LinearLayoutManager(this));
 
         //Se establece el escenario para realizar las peticiones web
         OkHttpClient client = new OkHttpClient.Builder()
@@ -53,9 +61,11 @@ public class Inicio extends AppCompatActivity {
                 .client(client)
                 .addConverterFactory(SimpleXmlConverterFactory.create())
                 .build();
-        APIService apiService = retrofit.create(APIService.class);
+        apiServiceSaldo = retrofit.create(APIService.class);
 
-        Call<ResponseBody> saldo = apiService.getSaldo(cuenta);
+        setAdapterCreditos(rvCreditos);
+
+        Call<ResponseBody> saldo = apiServiceSaldo.getSaldo(cuenta);
 
         saldo.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -71,6 +81,50 @@ public class Inicio extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
+                System.out.println("Se ah producido el siguiente error: "+t.getMessage());
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setAdapterCreditos(rvCreditos);
+    }
+
+    public void setAdapterCreditos(RecyclerView rvCreditos){
+        //Se establece el escenario para realizar las peticiones web
+        OkHttpClient client = new OkHttpClient.Builder()
+                .connectTimeout(60, TimeUnit.SECONDS)
+                .readTimeout(60,TimeUnit.SECONDS).build();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://10.0.2.2:8080/Banco_Servidor/srv/cliente/")
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        apiService = retrofit.create(APIService.class);
+        Call<List<Credito>> creditosRquest = apiService.getCreditos(Integer.valueOf(cuenta));
+
+        creditosRquest.enqueue(new Callback<List<Credito>>() {
+            @Override
+            public void onResponse(Call<List<Credito>> call, Response<List<Credito>> response) {
+                //Adaptador que contendrá las cuotas del crédito
+                AdapterCredito adaptador = new AdapterCredito();
+                //Snackbar.make(findViewById(R.id.containerInicio), "Lllega al servicio", Snackbar.LENGTH_LONG).show();
+                for(int x = 0; x < response.body().size(); x++){
+                    Credito credito = new Credito();
+                    credito.setFechaVencimiento(response.body().get(x).getFechaVencimiento());
+                    credito.setMonto(response.body().get(x).getMonto());
+                    credito.setSaldo(response.body().get(x).getSaldo());
+                    credito.setTipo(response.body().get(x).getTipo());
+                    adaptador.addCredito(credito);
+                }
+                rvCreditos.setAdapter(adaptador);
+            }
+
+            @Override
+            public void onFailure(Call<List<Credito>> call, Throwable t) {
                 System.out.println("Se ah producido el siguiente error: "+t.getMessage());
             }
         });
