@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:srcCompat="http://schemas.android.com/tools"
+    app:cardUseCompatPadding="true">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="4dp">
+        <RelativeLayout
+            android:id="@+id/creditoDescripcion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tvEstado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ejemplo1"
+                android:paddingRight="20dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/creditoInformacion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tvProximo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fecha de vencimiento: "/>
+            <TextView
+                android:id="@+id/tvProximoFecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="01/09/2020"
+                android:layout_toRightOf="@id/tvProximo"/>
+            <TextView
+                android:id="@+id/tvPagado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$100.00/$200.00"
+                android:textColor="@color/holo_blue_darkest"
+                android:layout_alignParentRight="true"/>
+        </RelativeLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

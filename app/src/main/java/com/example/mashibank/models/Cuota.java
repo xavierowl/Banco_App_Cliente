@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
- * Esta clase permite guardar datos 
+ * Esta clase permite guardar datos
  * referentes a una Cuota.
  */
 public class Cuota implements Serializable {
@@ -16,10 +16,10 @@ public class Cuota implements Serializable {
 
 	private double saldo;
 
-	private LocalDate fechaVencimiento;
+	private String fechaVencimiento;
 
 	private EstadoCuota estado;
-	
+
 	/**
 	 * Crea una nueva instancia de la clase Cuota.
 	 */
@@ -47,14 +47,14 @@ public class Cuota implements Serializable {
 	public double getMonto() {
 		return monto;
 	}
-	
+
 	/**
 	 * Devuelve el valor del monto.
 	 */
 	public void setMonto(double monto) {
 		this.monto = monto;
 	}
-	
+
 	/**
 	 * Devuelve el valor del saldo.
 	 */
@@ -72,14 +72,14 @@ public class Cuota implements Serializable {
 	/**
 	 * Devuelve el valor de la fecha de vencimiento.
 	 */
-	public LocalDate getFechaVencimiento() {
+	public String getFechaVencimiento() {
 		return fechaVencimiento;
 	}
 
 	/**
 	 * Establece el valor de la fecha de vencimiento.
 	 */
-	public void setFechaVencimiento(LocalDate fechaVencimiento) {
+	public void setFechaVencimiento(String fechaVencimiento) {
 		this.fechaVencimiento = fechaVencimiento;
 	}
 
@@ -102,7 +102,7 @@ public class Cuota implements Serializable {
 		}
 		*/
 	}
-	
+
 	/**
 	 * Abona el monto especificado a la cuota.
 	 */

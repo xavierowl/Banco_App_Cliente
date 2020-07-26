@@ -15,20 +15,30 @@ import com.example.mashibank.models.Credito;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AdapterCredito extends RecyclerView.Adapter<AdapterCredito.ViewHolder> {
+public class AdapterCredito extends RecyclerView.Adapter<AdapterCredito.ViewHolder>{
     private List<Credito> creditos;
     private Context context;
+    private OnCreditoListener onCreditoListener;
 
-    public AdapterCredito(){
+    public AdapterCredito(OnCreditoListener onCreditoListener){
         creditos = new ArrayList<Credito>();
+        this.onCreditoListener = onCreditoListener;
     }
 
     public void setCreditos(List<Credito> creditos){
         this.creditos = creditos;
     };
 
+    public List<Credito> getCreditos(){
+        return creditos;
+    };
+
     public void addCredito(Credito credito){
         creditos.add(credito);
+    }
+
+    public void limpiar(){
+        creditos.removeAll(creditos);
     }
 
     @NonNull
@@ -37,7 +47,7 @@ public class AdapterCredito extends RecyclerView.Adapter<AdapterCredito.ViewHold
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_credito, parent,
                 false);
         context = parent.getContext();
-        return new ViewHolder(view);
+        return new ViewHolder(view, onCreditoListener);
     }
 
     @Override
@@ -52,15 +62,29 @@ public class AdapterCredito extends RecyclerView.Adapter<AdapterCredito.ViewHold
         return this.creditos.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView tvPagado;
         TextView tvTipo;
         TextView tvFechaVencimiento;
-        ViewHolder(@NonNull View itemView){
+        OnCreditoListener onCreditoListener;
+
+        ViewHolder(@NonNull View itemView, OnCreditoListener onCreditoListener){
             super(itemView);
             tvPagado = itemView.findViewById(R.id.tvPagado);
             tvTipo = itemView.findViewById(R.id.tvTipoCredito);
             tvFechaVencimiento = itemView.findViewById(R.id.tvFechaVencimiento);
+
+            this.onCreditoListener = onCreditoListener;
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View v) {
+            onCreditoListener.onCreditoClick(getAdapterPosition());
+        }
+    }
+
+    public interface OnCreditoListener{
+        void onCreditoClick(int credito);
     }
 }
