@@ -22,4 +22,8 @@ public interface APIService {
 
     @GET("getSaldo")
     Call<ResponseBody> getSaldo(@Query("cuenta") String cuenta);
+
+    @GET("transferir")
+    Call<ResponseBody> transferir(@Query("origen") int origen, @Query("destino") int destino,
+                                  @Query("monto") double monto);
 }

@@ -156,7 +156,11 @@ public class Inicio extends AppCompatActivity implements AdapterCredito.OnCredit
                 recuperaContra.putExtra("correo", getIntent().getStringExtra("correo"));
                 startActivityForResult(recuperaContra,1);
                 return true;
-
+            case R.id.action_transacion:
+                Intent transaccion = new Intent(Inicio.this, Transaccion.class);
+                transaccion.putExtra("origen", cuenta);
+                startActivityForResult(transaccion, 1);
+                return true;
         }
 
         return super.onOptionsItemSelected(item);
