@@ -62,7 +62,7 @@ public class Inicio extends AppCompatActivity implements AdapterCredito.OnCredit
                 .readTimeout(60,TimeUnit.SECONDS).build();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8080/Banco_Servidor/srv/cliente/")
+                .baseUrl("http://192.168.18.4:8080/Banco_Servidor/srv/cliente/")
                 .client(client)
                 .addConverterFactory(SimpleXmlConverterFactory.create())
                 .build();
@@ -104,7 +104,7 @@ public class Inicio extends AppCompatActivity implements AdapterCredito.OnCredit
                 .readTimeout(60,TimeUnit.SECONDS).build();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8080/Banco_Servidor/srv/cliente/")
+                .baseUrl("http://192.168.18.4:8080/Banco_Servidor/srv/cliente/")
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();

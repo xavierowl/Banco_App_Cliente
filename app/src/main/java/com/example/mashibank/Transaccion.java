@@ -2,9 +2,11 @@ package com.example.mashibank;
 
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
@@ -45,7 +47,7 @@ public class Transaccion extends AppCompatActivity {
                 .readTimeout(60,TimeUnit.SECONDS).build();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8080/Banco_Servidor/srv/cliente/")
+                .baseUrl("http://192.168.18.4:8080/Banco_Servidor/srv/cliente/")
                 .client(client)
                 .addConverterFactory(SimpleXmlConverterFactory.create())
                 .build();
@@ -92,5 +94,11 @@ public class Transaccion extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_back, menu);
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        finish();
+        return super.onOptionsItemSelected(item);
     }
 }

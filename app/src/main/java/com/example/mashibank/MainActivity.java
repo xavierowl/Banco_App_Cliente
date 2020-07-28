@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private ProgressBar pgValidar;
     private TextView tvValidar;
     private TextView tvRecuperaContra;
+    private RelativeLayout containerMain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,17 +53,19 @@ public class MainActivity extends AppCompatActivity {
 
         tvRecuperaContra = findViewById(R.id.tvRecuperaContra);
 
+        containerMain = findViewById(R.id.containerMain);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         visualizarCarga(true);
 
         //Setting the surface for consume the loval REST API
         OkHttpClient client = new OkHttpClient.Builder()
-                .connectTimeout(60, TimeUnit.SECONDS)
+                .connectTimeout(20, TimeUnit.SECONDS)
                 .readTimeout(60,TimeUnit.SECONDS).build();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8080/Banco_Servidor/srv/cliente/")
+                .baseUrl("http://192.168.18.4:8080/Banco_Servidor/srv/cliente/")
                 .client(client)
                 .addConverterFactory(SimpleXmlConverterFactory.create())
                 .build();
@@ -109,7 +113,10 @@ public class MainActivity extends AppCompatActivity {
 
                         @Override
                         public void onFailure(Call<ResponseBody> call, Throwable t) {
-                            System.out.println("Ha ocurrido un error: "+t.getMessage());
+                            Snackbar.make(containerMain,
+                                    "Error al solicitar el logueo, disculpe las molestias.",
+                                     Snackbar.LENGTH_LONG).show();
+                            visualizarCarga(false);
                         }
                     });
                 }

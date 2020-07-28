@@ -36,7 +36,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/eClave"
+                        android:id="@+id/txtMonto"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:inputType="text">
@@ -52,7 +52,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/txtMonto"
+                        android:id="@+id/txtDestino"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:inputType="text">
@@ -68,7 +68,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/eInstitucion"
+                        android:id="@+id/txtInstitucion"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:inputType="text">
@@ -84,7 +84,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/eNumeroIdentificacion"
+                        android:id="@+id/txtNumeroIdentificacion"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:inputType="text">
