@@ -12,4 +12,5 @@
     <string name="action_transaccion">Transacción</string>
     <string name="title_activity_transaccion">Transaccion</string>
     <string name="nombreBanco">Mashi Bank</string>
+    <string name="action_transaccion_interbancaria">Transacción Interbancaria</string>
 </resources>

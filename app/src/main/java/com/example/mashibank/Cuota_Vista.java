@@ -26,7 +26,7 @@ public class Cuota_Vista extends AppCompatActivity {
         cuotas = Inicio.cuotas;
         adaptador = new AdapterCuota();
         for (Cuota cuota: cuotas) {
-            if(cuota.getEstado() == EstadoCuota.VENCIDA){
+            if(cuota.getEstado() == EstadoCuota.PENDIENTE){
                 adaptador.addCuota(cuota);
             }
         }

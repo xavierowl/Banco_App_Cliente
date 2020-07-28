@@ -161,6 +161,11 @@ public class Inicio extends AppCompatActivity implements AdapterCredito.OnCredit
                 transaccion.putExtra("origen", cuenta);
                 startActivityForResult(transaccion, 1);
                 return true;
+            case R.id.action_transaccion_interbancaria:
+                Intent transaccion_interbancaria = new Intent(Inicio.this, TransaccionInterbancaria.class);
+                transaccion_interbancaria.putExtra("origen", cuenta);
+                startActivityForResult(transaccion_interbancaria, 1);
+                return true;
         }
 
         return super.onOptionsItemSelected(item);

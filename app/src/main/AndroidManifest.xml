@@ -16,6 +16,7 @@
 
         <activity android:name=".Cuota_Vista"></activity>
         <activity android:name=".Transaccion"></activity>
+        <activity android:name=".TransaccionInterbancaria"></activity>
         <activity
             android:name=".Inicio"
             android:label="@string/title_activity_inicio"

@@ -12,4 +12,9 @@
         android:orderInCategory="100"
         android:title="@string/action_transaccion"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_transaccion_interbancaria"
+        android:orderInCategory="100"
+        android:title="@string/action_transaccion_interbancaria"
+        app:showAsAction="never" />
 </menu>
