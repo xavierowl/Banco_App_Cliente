@@ -47,7 +47,7 @@ public class Transaccion extends AppCompatActivity {
                 .readTimeout(60,TimeUnit.SECONDS).build();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.18.4:8080/Banco_Servidor/srv/cliente/")
+                .baseUrl("http://www.mashibank.tk/srv/cliente/")
                 .client(client)
                 .addConverterFactory(SimpleXmlConverterFactory.create())
                 .build();

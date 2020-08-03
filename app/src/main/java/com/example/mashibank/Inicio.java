@@ -62,7 +62,7 @@ public class Inicio extends AppCompatActivity implements AdapterCredito.OnCredit
                 .readTimeout(60,TimeUnit.SECONDS).build();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.18.4:8080/Banco_Servidor/srv/cliente/")
+                .baseUrl("http://www.mashibank.tk/srv/cliente/")
                 .client(client)
                 .addConverterFactory(SimpleXmlConverterFactory.create())
                 .build();
@@ -100,11 +100,11 @@ public class Inicio extends AppCompatActivity implements AdapterCredito.OnCredit
     public void setAdapterCreditos(RecyclerView rvCreditos){
         //Se establece el escenario para realizar las peticiones web
         OkHttpClient client = new OkHttpClient.Builder()
-                .connectTimeout(60, TimeUnit.SECONDS)
-                .readTimeout(60,TimeUnit.SECONDS).build();
+                .connectTimeout(20, TimeUnit.SECONDS)
+                .readTimeout(20,TimeUnit.SECONDS).build();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.18.4:8080/Banco_Servidor/srv/cliente/")
+                .baseUrl("http://www.mashibank.tk/srv/cliente/")
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();

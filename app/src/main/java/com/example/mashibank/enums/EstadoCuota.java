@@ -6,7 +6,8 @@ package com.example.mashibank.enums;
  **/
 public enum EstadoCuota {
 	PENDIENTE("Pendiente"),
-	PAGADA("Pagada");
+	PAGADA("Pagada"),
+	VENCIDA("Vencida");
 	
 	private String etiqueta;
 	

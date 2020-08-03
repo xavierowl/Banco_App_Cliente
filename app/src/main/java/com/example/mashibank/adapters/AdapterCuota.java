@@ -49,10 +49,9 @@ public class AdapterCuota extends RecyclerView.Adapter<AdapterCuota.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull AdapterCuota.ViewHolder holder, int position) {
-        holder.tvPagado.setText(String.valueOf(cuotas.get(position).getSaldo())+
-                                "/"+
-                String.valueOf(cuotas.get(position).getMonto()));
-        holder.tvEstado.setText(String.valueOf(cuotas.get(position).getEstado()));
+        holder.tvPagado.setText(String.format("%.2f", cuotas.get(position).getSaldo())+
+                                "/"+ String.format("%.2f", cuotas.get(position).getMonto()));
+        holder.tvEstado.setText(String.valueOf(cuotas.get(position).getEstado().getEtiqueta()));
         holder.tvProximoFecha.setText(String.valueOf(cuotas.get(position).getFechaVencimiento()));
     }
 
