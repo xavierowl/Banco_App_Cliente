@@ -52,9 +52,10 @@ public class AdapterCredito extends RecyclerView.Adapter<AdapterCredito.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull AdapterCredito.ViewHolder holder, int position) {
-        holder.tvPagado.setText(String.valueOf(creditos.get(position).getMonto()));
+        holder.tvPagado.setText(String.valueOf(String.format("%.2f", creditos.get(position).getMonto())));
         holder.tvTipo.setText(String.valueOf(creditos.get(position).getTipo()));
-        holder.tvFechaVencimiento.setText(String.valueOf(creditos.get(position).getFechaVencimiento()));
+        holder.tvFechaVencimiento.setText(String.valueOf(creditos.get(position)
+                .getFechaVencimiento().toString()));
     }
 
     @Override

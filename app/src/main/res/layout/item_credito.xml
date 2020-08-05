@@ -22,21 +22,15 @@
                 android:text="Ejemplo1"
                 android:paddingRight="20dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
-            <TextView
-                android:id="@+id/numeroCreditos"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="10/20"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:layout_toRightOf="@id/tvTipoCredito"/>
 
             <TextView
-                android:id="@+id/tvFechaVencimiento"
+                android:id="@+id/tvFechaSolicitud"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="01/01/2000"
+                android:text="por definir"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:layout_alignParentRight="true"/>
+                android:layout_alignParentRight="true"
+                android:visibility="invisible"/>
         </RelativeLayout>
         <RelativeLayout
             android:id="@+id/creditoInformacion"
@@ -46,12 +40,12 @@
                 android:id="@+id/tvProximo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Próximo pago: "/>
+                android:text="Fecha de vencimiento: "/>
             <TextView
-                android:id="@+id/tvProximoFecha"
+                android:id="@+id/tvFechaVencimiento"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="01/09/2020"
+                android:text="por definir"
                 android:layout_toRightOf="@id/tvProximo"/>
             <TextView
                 android:id="@+id/tvPagado"
@@ -61,9 +55,5 @@
                 android:textColor="@color/holo_blue_darkest"
                 android:layout_alignParentRight="true"/>
         </RelativeLayout>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/noDebe"/>
     </LinearLayout>
 </androidx.cardview.widget.CardView>
